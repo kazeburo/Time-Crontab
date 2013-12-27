@@ -145,7 +145,7 @@ Time::Crontab - parser for crontab date and time field
 Time::Crontab is a parser for crontab date and time field. And 
 it provides simple matcher.
 
-CPAN already has DateTime::Event::Cron that depnends on DateTime.
+CPAN already has DateTime::Event::Cron that depends on DateTime.
 Time::Crontab does not require DateTime or Time::Piece.
 
 =head1 METHOD
