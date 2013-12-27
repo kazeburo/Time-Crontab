@@ -2,7 +2,6 @@ use strict;
 use Test::More;
 use Time::Crontab;
 use Time::Local;
-use Log::Minimal;
 
 is_deeply( Time::Crontab->new('* * * JAN *')->dump->{month}, [1]); 
 is_deeply( Time::Crontab->new('* * * APR *')->dump->{month}, [4]); 

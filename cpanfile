@@ -4,5 +4,6 @@ requires 'Set::Crontab', '1.03';
 
 on 'test' => sub {
     requires 'Test::More', '0.98';
+    requires 'Time::Local';
 };
 
