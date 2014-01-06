@@ -2,6 +2,10 @@ Revision history for Perl extension Time-Crontab
 
 {{$NEXT}}
 
+0.02 2014-01-06T07:19:22Z
+
+    - add document about Algorithm::Cron
+
 0.01 2013-12-27T04:10:21Z
 
     - original version
