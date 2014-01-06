@@ -145,9 +145,6 @@ Time::Crontab - parser for crontab date and time field
 Time::Crontab is a parser for crontab date and time field. And 
 it provides simple matcher.
 
-CPAN already has DateTime::Event::Cron that depends on DateTime.
-Time::Crontab does not require DateTime or Time::Piece.
-
 =head1 METHOD
 
 =over 4
@@ -175,6 +172,22 @@ Timestamps are truncated to minute resolution.
 Predefined scheduling definitions are not supported. 
 In month and day_of_week fields, Able to use the first three letters of day or month. But 
 does not support range or list of the names.
+
+=head1 RELATED MODULES
+
+=over 4
+
+=item L<DateTime::Event::Cron>
+
+DateTime::Event::Cron that depends on DateTime. 
+Time::Crontab does not require DateTime or Time::Piece.
+
+=item L<Algorithm::Cron>
+
+Algorithm::Cron also does not require DateTime. 
+It's provides `next_time` method, Time::Crontab provides `match` method.
+
+=back
 
 =head1 LICENSE
 
