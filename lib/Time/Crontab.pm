@@ -111,7 +111,7 @@ sub match {
     my @lt = localtime($_[0]);
     if ( $self->_contains('minute', $lt[1]) 
       && $self->_contains('hour', $lt[2])
-      && ( $self->_contains('day', $lt[3]) || $self->_contains('day_of_week', $lt[6]) )
+      && ( $self->_contains('day', $lt[3]) && $self->_contains('day_of_week', $lt[6]) )
       && $self->_contains('month', $lt[4]+1) ) {
         return 1;
     }

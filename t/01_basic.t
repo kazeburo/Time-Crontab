@@ -27,11 +27,20 @@ cron_ok('  */5 * * * *', 0, 0, 26, 12, 2013);
 cron_ok('  */5 *   * * *  ', 0, 0, 26, 12, 2013);
 cron_notok('0 0 13 * 5', 0, 1, 6, 12, 2013);
 
-cron_ok('0 0 * * 0', 0, 0, 13, 8, 2013); # 0==sun
-cron_ok('0 0 * * 7', 0, 0, 13, 8, 2013); # 7==sun
+cron_notok('0 0 * * 0', 0, 0, 13, 8, 2013); # 0==sun, but day is Tuesday 13th Aug 2013
+cron_notok('0 0 * * 1', 0, 0, 13, 8, 2013); # 1==mon, but day is Tuesday 13th Aug 2013
+cron_ok('0 0 * * 2', 0, 0, 13, 8, 2013); # 2==tue, but day is Tuesday 13th Aug 2013
+cron_notok('0 0 * * 3', 0, 0, 13, 8, 2013); # 3==wed, but day is Tuesday 13th Aug 2013
+cron_notok('0 0 * * 4', 0, 0, 13, 8, 2013); # 4==thu, but day is Tuesday 13th Aug 2013
+cron_notok('0 0 * * 5', 0, 0, 13, 8, 2013); # 5==fri, but day is Tuesday 13th Aug 2013
+cron_notok('0 0 * * 6', 0, 0, 13, 8, 2013); # 6==sat, but day is Tuesday 13th Aug 2013
+cron_notok('0 0 * * 7', 0, 0, 13, 8, 2013); # 7==sun, but day is Tuesday 13th Aug 2013
 
-cron_ok('0 0 13 * 5', 0, 0, 13, 1, 2013); # defined day and dow => day or dow
-cron_ok('0 0 13 * 5', 0, 0, 6, 12, 2013); # defined day and dow => day or dow
+cron_notok('0 0 13 8 7', 0, 0, 13, 8, 2013); # 7==sun, but day is Tuesday 13th Aug 2013 - special check!
+cron_ok('0 0 13 8 2', 0, 0, 13, 8, 2013); # 2==tue, and day is Tuesday 13th Aug 2013 - special check!
+
+cron_notok('0 0 13 * 5', 0, 0, 13, 1, 2013); # defined day and dow => day or dow
+cron_notok('0 0 13 * 5', 0, 0, 6, 12, 2013); # defined day and dow => day or dow
 
 sub error_cron {
     my ($cron, $err_match) = @_;
@@ -51,7 +60,3 @@ error_cron('* * * * THU-MON',qr/bad format day_of_week/);
 error_cron('* * * * THU,MON',qr/bad format day_of_week/);
 
 done_testing();
-
-
-
-
