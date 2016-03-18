@@ -42,12 +42,12 @@ does not support range or list of the names.
 
 # RELATED MODULES
 
-- [DateTime::Event::Cron](http://search.cpan.org/perldoc?DateTime::Event::Cron)
+- [DateTime::Event::Cron](https://metacpan.org/pod/DateTime::Event::Cron)
 
     DateTime::Event::Cron that depends on DateTime. 
     Time::Crontab does not require DateTime or Time::Piece.
 
-- [Algorithm::Cron](http://search.cpan.org/perldoc?Algorithm::Cron)
+- [Algorithm::Cron](https://metacpan.org/pod/Algorithm::Cron)
 
     Algorithm::Cron also does not require DateTime. 
     It's provides \`next\_time\` method, Time::Crontab provides \`match\` method.
