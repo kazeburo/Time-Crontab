@@ -4,7 +4,7 @@ use 5.008005;
 use strict;
 use warnings;
 use Carp qw/croak/;
-use List::MoreUtils qw/all any uniq/;
+use List::MoreUtils qw/all any uniq firstidx/;
 use Set::Crontab;
 
 our $VERSION = "0.03";
@@ -106,14 +106,43 @@ sub _contains {
     any { $_ == $num  } @{$self->{rules}->{$key}};
 }
 
+sub _contains_any {
+    my ($self, $key) = @_;
+    my $key_i = firstidx { $_ eq $key} @keys;
+    my $range = $ranges[$key_i];
+    my $rule = $self->{rules}->{$key};
+
+    if (@$range != @$rule) {
+        return 0;
+    }
+    for my $idx (0..$#{$range}) {
+        if ($range->[$idx] != $rule->[$idx]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 sub match {
     my $self = shift;
     my @lt = localtime($_[0]);
     if ( $self->_contains('minute', $lt[1]) 
       && $self->_contains('hour', $lt[2])
-      && ( $self->_contains('day', $lt[3]) && $self->_contains('day_of_week', $lt[6]) )
       && $self->_contains('month', $lt[4]+1) ) {
-        return 1;
+        # dow and dom is a bit complicated
+        if (
+          $self->_contains_any('day') && $self->_contains_any('day_of_week')
+          ||
+          $self->_contains_any('day') && $self->_contains('day_of_week', $lt[6])
+          ||
+          $self->_contains('day', $lt[3]) && $self->_contains_any('day_of_week')
+          ||
+          ! $self->_contains_any('day') && ! $self->_contains_any('day_of_week') && (
+          $self->_contains('day', $lt[3]) || $self->_contains('day_of_week', $lt[6]) )
+         ) {
+            return 1;
+        }
+        return;
     }
     return;
 }
