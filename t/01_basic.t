@@ -36,11 +36,14 @@ cron_notok('0 0 * * 5', 0, 0, 13, 8, 2013); # 5==fri, but day is Tuesday 13th Au
 cron_notok('0 0 * * 6', 0, 0, 13, 8, 2013); # 6==sat, but day is Tuesday 13th Aug 2013
 cron_notok('0 0 * * 7', 0, 0, 13, 8, 2013); # 7==sun, but day is Tuesday 13th Aug 2013
 
-cron_notok('0 0 13 8 7', 0, 0, 13, 8, 2013); # 7==sun, but day is Tuesday 13th Aug 2013 - special check!
+cron_ok('0 0 13 8 7', 0, 0, 13, 8, 2013); # 7==sun, but day is Tuesday 13th Aug 2013 - special check!
 cron_ok('0 0 13 8 2', 0, 0, 13, 8, 2013); # 2==tue, and day is Tuesday 13th Aug 2013 - special check!
 
-cron_notok('0 0 13 * 5', 0, 0, 13, 1, 2013); # defined day and dow => day or dow
-cron_notok('0 0 13 * 5', 0, 0, 6, 12, 2013); # defined day and dow => day or dow
+cron_ok('0 0 13 * 5', 0, 0, 13, 1, 2013); # defined day and dow => day or dow
+cron_ok('0 0 13 * 5', 0, 0, 6, 12, 2013); # defined day and dow => day or dow
+
+cron_notok('0 0 13 * *',      0, 0,  12, 8, 2013); # 12th Aug still doesn't match 13th (not just because dow is any).
+cron_ok(   '0 10 10,31 * 2',  0, 10, 10, 3, 2016); # 2016-03-10T10:00:00Z matches the 10th dom (but not the 2nd dow)
 
 sub error_cron {
     my ($cron, $err_match) = @_;
