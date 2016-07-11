@@ -66,9 +66,10 @@
          "web" : "https://github.com/kazeburo/Time-Crontab"
       }
    },
-   "version" : "0.03",
+   "version" : "0.04",
    "x_contributors" : [
-      "Barbie <barbie@missbarbell.co.uk>"
+      "Barbie <barbie@missbarbell.co.uk>",
+      "Martin Barth <martin@senfdax.de>"
    ],
    "x_serialization_backend" : "JSON::PP version 2.27203"
 }

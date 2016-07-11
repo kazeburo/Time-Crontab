@@ -2,6 +2,10 @@ Revision history for Perl extension Time-Crontab
 
 {{$NEXT}}
 
+0.04 2016-07-11T09:02:32Z
+
+    - fixed bug in Testcase for dow and dom (Thanks ufobat)
+
 0.03 2016-03-18T00:00:06Z
 
     - fixed bug. match() should match on day *and* dow, not day or dow (Thank you barbie)

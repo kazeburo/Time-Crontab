@@ -7,7 +7,7 @@ use Carp qw/croak/;
 use List::MoreUtils qw/all any uniq firstidx/;
 use Set::Crontab;
 
-our $VERSION = "0.03";
+our $VERSION = "0.04";
 
 my @keys = qw/minute hour day month day_of_week/;
 my @ranges = (
